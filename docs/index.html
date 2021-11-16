@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="logo.svg">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="highlight.vs.min.css">
+    <script src="highlight.min.js"></script>
+    <title>MiniVue Examples</title>
+</head>
+<body>
+<div id="app" class="app">
+    <div class="card">
+        <div class="card-infos" v-cloak>
+            <div class="card-row">
+                <div class="card-field">姓名：</div>
+                <div class="card-value">{{infos.name}}</div>
+            </div>
+            <div class="card-row">
+                <div class="card-field">性别：</div>
+                <div class="card-value">{{infos.gender}}</div>
+            </div>
+        </div>
+        <div class="card-picture" v-cloak :style="{backgroundColor: infos.gender === '男' ? '#4ca1f6' : '#f37b6c'}">
+            {{picture}}
+        </div>
+    </div>
+    <div class="button-wrapper">
+        <button id="next">下一位嘉宾</button>
+    </div>
+</div>
+<script type="module" id="demo-js">
+import Vue from './vue.esm.js'
+
+const getData = () => {
+  const firstNames = ['美丽的', '帅气的', '有才华的', '逗逼的', '积极向上的', '快乐的', '忧郁的', '稀缺的', '武功平平的', '温暖的']
+  const lastNames = ['玫瑰花', '大象', '电灯泡', '小傻瓜', '阿凡达', '向日葵', '洗衣机', '喜之狼', '大师', '小兔子']
+  const pictures = ['😀', '😊', '😉', '😂', '😁', '😇', '😎', '😜', '😝', '😌']
+  const firName = firstNames[Math.floor(Math.random() * 10)]
+  const lastName = lastNames[Math.floor(Math.random() * 10)]
+  const name = firName + lastName
+  const picture = pictures[Math.floor(Math.random() * 10)]
+  const gender = Math.random() > 0.5 ? '男' : '女'
+
+  return {
+    infos: {
+      name,
+      gender,
+    },
+    picture,
+  }
+}
+
+const data = getData()
+const v = new Vue({
+  el: '#app',
+  data,
+})
+
+document.querySelector('#next').addEventListener('click', function () {
+  const newData = getData();
+  v.infos = newData.infos
+  v.picture = newData.picture
+});
+</script>
+<pre><code class="code" data-for="#demo-js"></code></pre>
+<script>
+if (window.hljs) {
+  Array.from(document.querySelectorAll('.code')).forEach((code) => {
+    const target = document.querySelector(code.getAttribute('data-for'))
+    code.textContent = code.classList.contains('language-html') ? target.outerHTML : target.textContent
+    hljs.highlightElement(code)
+  })
+}
+</script>
+</body>
+</html>

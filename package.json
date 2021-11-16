@@ -1,0 +1,48 @@
+{
+  "name": "@liaoys/debounce",
+  "version": "1.0.0",
+  "description": "Simplified Vue with detailed notes help you read and learn the source code of Vue",
+  "homepage": "https://liaoyuesheng.github.io/miniVue/",
+  "author": "liaoyuesheng",
+  "license": "ISC",
+  "keywords": [
+    "vue",
+    "vuesource",
+    "Object.defineProperty"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/liaoyuesheng/miniVue"
+  },
+  "main": "dist/miniVue.cjs.js",
+  "module": "dist/miniVue.esm.js",
+  "types": "dist/core/index.d.ts",
+  "bin": {
+    "rollup": "./node_modules/.bin/rollup",
+    "eslint": "./node_modules/.bin/eslint"
+  },
+  "scripts": {
+    "dev": "rollup --config rollup.dev.config.js --watch",
+    "build": "rollup -c",
+    "publish": "npm publish --access public",
+    "lint": "eslint src",
+    "lint-fix": "eslint --fix src"
+  },
+  "devDependencies": {
+    "@rbnlffl/rollup-plugin-eslint": "^2.0.0",
+    "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.4",
+    "@rollup/plugin-typescript": "^8.2.5",
+    "@typescript-eslint/eslint-plugin": "^4.31.0",
+    "@typescript-eslint/parser": "^4.31.0",
+    "eslint": "^7.32.0",
+    "rollup": "^2.56.3",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-serve": "^1.1.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "^4.4.3"
+  },
+  "dependencies": {
+    "tslib": "^2.3.1"
+  }
+}

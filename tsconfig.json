@@ -1,0 +1,13 @@
+{
+  "exclude": ["dist"],
+  "include": ["src/**/*.*"],
+  "compilerOptions": {
+    "target": "es6",
+    "declaration": true,
+    "outDir": "dist",
+    "declarationDir": ".",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node"
+  }
+}
