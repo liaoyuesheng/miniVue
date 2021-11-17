@@ -3,7 +3,7 @@ import patch from '../vdom/patch'
 import {def, observe} from '../observer'
 import Watcher from '../observer/watcher'
 import {compiler} from '../../compiler'
-import {AnyObject} from '../../shared/util'
+import {AnyObject, isPlainObject, isUndef} from '../../shared/util'
 
 export interface VueOptions {
   el?: string,
@@ -119,12 +119,19 @@ export default class Vue {
   }
 
   /**
-   * 透传调用String方法
+   * 将值转成字符串。其中对象或数组将转成JSON字符串
    * @param text
    * @private
    */
   _s(text: any) {
+    if(isUndef(text)) {
+      return ''
+    }
+
+    if(Array.isArray(text) || isPlainObject(text)) {
+      return JSON.stringify(text, null, 2)
+    }
+
     return String(text)
   }
 }
-
