@@ -49,7 +49,7 @@ export default class Vue {
      */
     _v(text: string): VNode;
     /**
-     * 透传调用String方法
+     * 将值转成字符串。其中对象或数组将转成JSON字符串
      * @param text
      * @private
      */

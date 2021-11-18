@@ -54,3 +54,8 @@ body {
   display: flex;
   justify-content: center;
 }
+
+.read-names {
+  padding: 8px;
+  text-align: center;
+}
