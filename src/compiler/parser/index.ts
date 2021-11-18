@@ -87,6 +87,7 @@ export function parse(template: string): AST {
       if (lastChild && !lastChild.tag) {
         // 则合并这两个文本
         lastChild.text = lastChild.text + text
+        lastChild.expression = parseText(lastChild.text)
       } else {
         // 否则将该文本AST添加到父节点的子节点集合中去
         parent.children.push({

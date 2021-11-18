@@ -21,7 +21,7 @@ module.exports = {
   globals: {},
   rules: {
     semi: ['error', 'never'],
-    indent: ['error', 2],
+    indent: ['error', 2, {'SwitchCase': 1}],
     'comma-dangle': ['error', {
       objects: 'always',
     }],

@@ -12,7 +12,7 @@
     <title>MiniVue Examples</title>
 </head>
 <body>
-<div id="app" class="app">
+<div id="app">
     <div class="card">
         <div class="card-infos" v-cloak>
             <div class="card-row">
@@ -25,17 +25,18 @@
             </div>
         </div>
         <div class="card-picture" v-cloak :style="{backgroundColor: infos.gender === '男' ? '#4ca1f6' : '#f37b6c'}">
-            {{picture}}
+            {{infos.picture}}
         </div>
     </div>
     <div class="button-wrapper">
         <button id="next">下一位嘉宾</button>
     </div>
+    <div class="read-names" v-cloak>出现过的人：{{readNames.join('，')}}</div>
 </div>
 <script type="module" id="demo-js">
 import Vue from './vue.esm.js'
 
-const getData = () => {
+const getInfos = () => {
   const firstNames = ['美丽的', '帅气的', '有才华的', '逗逼的', '积极向上的', '快乐的', '忧郁的', '稀缺的', '武功平平的', '温暖的']
   const lastNames = ['玫瑰花', '大象', '电灯泡', '小傻瓜', '阿凡达', '向日葵', '洗衣机', '喜之狼', '大师', '小兔子']
   const pictures = ['😀', '😊', '😉', '😂', '😁', '😇', '😎', '😜', '😝', '😌']
@@ -46,25 +47,26 @@ const getData = () => {
   const gender = Math.random() > 0.5 ? '男' : '女'
 
   return {
-    infos: {
-      name,
-      gender,
-    },
+    name,
+    gender,
     picture,
   }
 }
 
-const data = getData()
+const infos = getInfos()
 const v = new Vue({
   el: '#app',
-  data,
+  data: {
+    infos,
+    readNames: [infos.name]
+  }
 })
 
 document.querySelector('#next').addEventListener('click', function () {
-  const newData = getData();
-  v.infos = newData.infos
-  v.picture = newData.picture
-});
+  const newInfos = getInfos()
+  v.infos = newInfos
+  v.readNames.push(newInfos.name)
+})
 </script>
 <pre><code class="code" data-for="#demo-js"></code></pre>
 <script>
